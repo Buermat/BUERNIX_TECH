@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - BUERNIX TECH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+    </style>
+    <script src="./js/supabase-config.js"></script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Login Card -->
+    <div class="w-full max-w-md">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <div
+                    class="h-10 w-10 rounded-lg bg-white text-zinc-950 flex items-center justify-center font-bold text-xl">
+                    B</div>
+                <span class="text-2xl font-bold text-white tracking-tight">BUERNIX TECH</span>
+            </div>
+            <p class="text-zinc-400 text-sm">Admin Dashboard</p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+            <h2 class="text-2xl font-semibold text-white mb-2">Welcome back</h2>
+            <p class="text-zinc-400 text-sm mb-8">Sign in to manage your website</p>
+
+            <form id="loginForm" class="space-y-6">
+                <!-- Email -->
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Email</label>
+                    <input type="email" id="email"
+                        class="w-full px-4 py-3 bg-zinc-800/50 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/20 transition"
+                        placeholder="admin@buernix.com" required>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label class="block text-sm font-medium text-zinc-300 mb-2">Password</label>
+                    <input type="password" id="password"
+                        class="w-full px-4 py-3 bg-zinc-800/50 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-white/20 transition"
+                        placeholder="••••••••" required>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="remember"
+                            class="w-4 h-4 rounded border-white/20 bg-zinc-800 text-white focus:ring-white/20">
+                        <span class="text-sm text-zinc-400">Remember me</span>
+                    </label>
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage"
+                    class="hidden bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-red-400 text-sm"></div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full py-3 bg-white text-zinc-900 rounded-xl font-medium hover:bg-zinc-100 transition-colors">
+                    Sign In
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <p class="text-center text-zinc-500 text-xs mt-6">
+            © 2025 BUERNIX TECH. All rights reserved.
+        </p>
+    </div>
+
+    <script src="./js/auth-supabase.js"></script>
+</body>
+
+</html>
