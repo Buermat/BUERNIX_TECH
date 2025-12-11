@@ -1,18 +1,17 @@
-```javascript
 // Supabase Dashboard Functions
 let supabase;
 
 // Initialize Supabase
 async function initDashboard() {
-  let attempts = 0;
-  while (!window.getSupabase || !window.getSupabase()) {
-    if (attempts++ > 50) {
-      alert('Failed to initialize. Please refresh the page.');
-      return;
+    let attempts = 0;
+    while (!window.getSupabase || !window.getSupabase()) {
+        if (attempts++ > 50) {
+            alert('Failed to initialize. Please refresh the page.');
+            return;
+        }
+        await new Promise(resolve => setTimeout(resolve, 100));
     }
-    await new Promise(resolve => setTimeout(resolve, 100));
-  }
-  supabase = window.getSupabase();
+    supabase = window.getSupabase();
 
     // Check authentication
     await checkAuth();
