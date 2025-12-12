@@ -54,6 +54,7 @@
             <div class="p-8 space-y-8">
 
                 <!-- Stats Grid -->
+                <!-- Stats Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Stat Card 1 -->
                     <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
@@ -62,9 +63,8 @@
                                 <iconify-icon icon="solar:folder-bold-duotone" width="24"
                                     class="text-blue-400"></iconify-icon>
                             </div>
-                            <span class="text-xs text-green-400">+12%</span>
                         </div>
-                        <h3 class="text-3xl font-bold mb-1">24</h3>
+                        <h3 id="dash-total-projects" class="text-3xl font-bold mb-1">--</h3>
                         <p class="text-sm text-zinc-400">Total Projects</p>
                     </div>
 
@@ -75,128 +75,187 @@
                                 <iconify-icon icon="solar:users-group-rounded-bold-duotone" width="24"
                                     class="text-purple-400"></iconify-icon>
                             </div>
-                            <span class="text-xs text-green-400">+8%</span>
                         </div>
-                        <h3 class="text-3xl font-bold mb-1">156</h3>
+                        <h3 id="dash-total-clients" class="text-3xl font-bold mb-1">--</h3>
                         <p class="text-sm text-zinc-400">Total Clients</p>
                     </div>
 
-                    <!-- Stat Card 3 -->
-                    <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center">
-                                <iconify-icon icon="solar:letter-bold-duotone" width="24"
-                                    class="text-amber-400"></iconify-icon>
-                            </div>
-                            <span class="text-xs text-red-400">3 new</span>
+                    <!-- Stat Card 3: Enquiries -->
+                    <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6 relative overflow-hidden group">
+                        <div
+                            class="absolute -right-4 -top-4 w-24 h-24 bg-gold-500/10 rounded-full blur-xl group-hover:bg-gold-500/20 transition">
                         </div>
-                        <h3 class="text-3xl font-bold mb-1">12</h3>
-                        <p class="text-sm text-zinc-400">Messages</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center">
+                                <iconify-icon icon="solar:suitcase-bold-duotone" width="24"
+                                    class="text-gold-500"></iconify-icon>
+                            </div>
+                            <span id="dash-new-enquiries-badge"
+                                class="text-xs bg-gold-500 text-black px-2 py-0.5 rounded-full font-bold hidden">NEW</span>
+                        </div>
+                        <h3 id="dash-total-enquiries" class="text-3xl font-bold mb-1 text-gold-500">--</h3>
+                        <p class="text-sm text-zinc-400">Project Enquiries</p>
                     </div>
 
-                    <!-- Stat Card 4 -->
+                    <!-- Stat Card 4: Messages -->
                     <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
                         <div class="flex items-center justify-between mb-4">
                             <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                                <iconify-icon icon="solar:chart-bold-duotone" width="24"
+                                <iconify-icon icon="solar:chat-round-bold-duotone" width="24"
                                     class="text-emerald-400"></iconify-icon>
                             </div>
-                            <span class="text-xs text-green-400">+24%</span>
                         </div>
-                        <h3 class="text-3xl font-bold mb-1">98%</h3>
-                        <p class="text-sm text-zinc-400">Satisfaction</p>
+                        <h3 id="dash-total-messages" class="text-3xl font-bold mb-1">--</h3>
+                        <p class="text-sm text-zinc-400">Messages</p>
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
-                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
-                    <h2 class="text-lg font-semibold mb-4">Quick Actions</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <a href="./projects.html"
-                            class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition border border-white/5">
-                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                                <iconify-icon icon="solar:add-circle-bold-duotone" width="20"
-                                    class="text-blue-400"></iconify-icon>
-                            </div>
-                            <div>
-                                <p class="font-medium text-sm">Add New Project</p>
-                                <p class="text-xs text-zinc-500">Create a new portfolio item</p>
-                            </div>
-                        </a>
-
-                        <a href="./team.html"
-                            class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition border border-white/5">
-                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                                <iconify-icon icon="solar:user-plus-bold-duotone" width="20"
-                                    class="text-purple-400"></iconify-icon>
-                            </div>
-                            <div>
-                                <p class="font-medium text-sm">Add Team Member</p>
-                                <p class="text-xs text-zinc-500">Expand your team</p>
-                            </div>
-                        </a>
-
-                        <a href="./settings.html"
-                            class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition border border-white/5">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-                                <iconify-icon icon="solar:settings-bold-duotone" width="20"
-                                    class="text-emerald-400"></iconify-icon>
-                            </div>
-                            <div>
-                                <p class="font-medium text-sm">Site Settings</p>
-                                <p class="text-xs text-zinc-500">Configure your website</p>
-                            </div>
-                        </a>
+                <!-- Recent Enquiries Widget -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left: Recent Enquiries List -->
+                    <div class="lg:col-span-2 bg-zinc-900 border border-white/10 rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-lg font-bold">Recent Project API Requests</h2>
+                            <a href="enquiries.html" class="text-sm text-gold-500 hover:text-white transition">View
+                                All</a>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left">
+                                <thead class="text-xs text-zinc-500 uppercase bg-zinc-950/50 rounded-lg">
+                                    <tr>
+                                        <th class="px-4 py-3 font-medium rounded-l-lg">Client / Business</th>
+                                        <th class="px-4 py-3 font-medium">Service</th>
+                                        <th class="px-4 py-3 font-medium">Status</th>
+                                        <th class="px-4 py-3 font-medium rounded-r-lg text-right">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dash-recent-enquiries" class="divide-y divide-white/5">
+                                    <tr>
+                                        <td colspan="4" class="px-4 py-6 text-center text-zinc-500">Loading...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Recent Activity -->
-                <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
-                    <h2 class="text-lg font-semibold mb-4">Recent Activity</h2>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4 pb-4 border-b border-white/5">
-                            <div
-                                class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                                <iconify-icon icon="solar:folder-bold-duotone" width="16"
-                                    class="text-blue-400"></iconify-icon>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-sm font-medium">New project added</p>
-                                <p class="text-xs text-zinc-500">FinTech Platform was added to portfolio</p>
-                            </div>
-                            <span class="text-xs text-zinc-500">2h ago</span>
-                        </div>
-
-                        <div class="flex items-start gap-4 pb-4 border-b border-white/5">
-                            <div
-                                class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                                <iconify-icon icon="solar:letter-bold-duotone" width="16"
-                                    class="text-purple-400"></iconify-icon>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-sm font-medium">New message received</p>
-                                <p class="text-xs text-zinc-500">John Doe sent an inquiry</p>
-                            </div>
-                            <span class="text-xs text-zinc-500">5h ago</span>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                                <iconify-icon icon="solar:settings-bold-duotone" width="16"
-                                    class="text-emerald-400"></iconify-icon>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-sm font-medium">Settings updated</p>
-                                <p class="text-xs text-zinc-500">Site title and description changed</p>
-                            </div>
-                            <span class="text-xs text-zinc-500">1d ago</span>
+                    <!-- Right: Quick Actions -->
+                    <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
+                        <h2 class="text-lg font-bold mb-6">Quick Actions</h2>
+                        <div class="space-y-3">
+                            <a href="enquiries.html"
+                                class="flex items-center gap-4 p-4 rounded-xl bg-zinc-950 border border-white/5 hover:border-gold-500/50 transition group">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 group-hover:text-gold-500 group-hover:scale-110 transition">
+                                    <iconify-icon icon="solar:folder-check-bold-duotone" width="20"></iconify-icon>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Review Enquiries</p>
+                                    <p class="text-xs text-zinc-500">Process incoming requests</p>
+                                </div>
+                            </a>
+                            <a href="crm-clients.html"
+                                class="flex items-center gap-4 p-4 rounded-xl bg-zinc-950 border border-white/5 hover:border-blue-500/50 transition group">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 group-hover:text-blue-500 group-hover:scale-110 transition">
+                                    <iconify-icon icon="solar:user-plus-bold-duotone" width="20"></iconify-icon>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Add Client</p>
+                                    <p class="text-xs text-zinc-500">Manually add new client</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-
+                <iconify-icon icon="solar:chart-bold-duotone" width="24" class="text-emerald-400"></iconify-icon>
             </div>
-        </main>
+            <span class="text-xs text-green-400">+24%</span>
+    </div>
+    <h3 class="text-3xl font-bold mb-1">98%</h3>
+    <p class="text-sm text-zinc-400">Satisfaction</p>
+    </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
+        <h2 class="text-lg font-semibold mb-4">Quick Actions</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="./projects.html"
+                class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition border border-white/5">
+                <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                    <iconify-icon icon="solar:add-circle-bold-duotone" width="20" class="text-blue-400"></iconify-icon>
+                </div>
+                <div>
+                    <p class="font-medium text-sm">Add New Project</p>
+                    <p class="text-xs text-zinc-500">Create a new portfolio item</p>
+                </div>
+            </a>
+
+            <a href="./team.html"
+                class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition border border-white/5">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                    <iconify-icon icon="solar:user-plus-bold-duotone" width="20" class="text-purple-400"></iconify-icon>
+                </div>
+                <div>
+                    <p class="font-medium text-sm">Add Team Member</p>
+                    <p class="text-xs text-zinc-500">Expand your team</p>
+                </div>
+            </a>
+
+            <a href="./settings.html"
+                class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition border border-white/5">
+                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                    <iconify-icon icon="solar:settings-bold-duotone" width="20" class="text-emerald-400"></iconify-icon>
+                </div>
+                <div>
+                    <p class="font-medium text-sm">Site Settings</p>
+                    <p class="text-xs text-zinc-500">Configure your website</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
+        <h2 class="text-lg font-semibold mb-4">Recent Activity</h2>
+        <div class="space-y-4">
+            <div class="flex items-start gap-4 pb-4 border-b border-white/5">
+                <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                    <iconify-icon icon="solar:folder-bold-duotone" width="16" class="text-blue-400"></iconify-icon>
+                </div>
+                <div class="flex-1">
+                    <p class="text-sm font-medium">New project added</p>
+                    <p class="text-xs text-zinc-500">FinTech Platform was added to portfolio</p>
+                </div>
+                <span class="text-xs text-zinc-500">2h ago</span>
+            </div>
+
+            <div class="flex items-start gap-4 pb-4 border-b border-white/5">
+                <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                    <iconify-icon icon="solar:letter-bold-duotone" width="16" class="text-purple-400"></iconify-icon>
+                </div>
+                <div class="flex-1">
+                    <p class="text-sm font-medium">New message received</p>
+                    <p class="text-xs text-zinc-500">John Doe sent an inquiry</p>
+                </div>
+                <span class="text-xs text-zinc-500">5h ago</span>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                    <iconify-icon icon="solar:settings-bold-duotone" width="16" class="text-emerald-400"></iconify-icon>
+                </div>
+                <div class="flex-1">
+                    <p class="text-sm font-medium">Settings updated</p>
+                    <p class="text-xs text-zinc-500">Site title and description changed</p>
+                </div>
+                <span class="text-xs text-zinc-500">1d ago</span>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </main>
 
     </div>
 

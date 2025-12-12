@@ -155,6 +155,63 @@ async function updateStatus(newStatus) {
 
         updateStats();
         renderEnquiries();
+
+        // Update modal status select if open
+        const select = document.getElementById('modalStatusSelect');
+        if (select) select.value = newStatus;
+    }
+}
+
+async function convertToClient() {
+    if (!currentEnquiryId) return;
+
+    const btn = document.getElementById('btnConvert');
+    if (btn) {
+        btn.innerHTML = `<iconify-icon icon="line-md:loading-loop" width="16"></iconify-icon> Processing...`;
+        btn.disabled = true;
+    }
+
+    try {
+        const enquiry = allEnquiries.find(e => e.id === currentEnquiryId);
+        if (!enquiry) throw new Error('Enquiry not found');
+
+        // 1. Create Client
+        // Note: Ensure your crm_clients table exists and matches these fields
+        const { data: newClient, error: clientError } = await window.supabase
+            .from('crm_clients')
+            .insert([{
+                full_name: enquiry.full_name,
+                email: enquiry.email,
+                phone: enquiry.phone,
+                company_name: enquiry.business_name,
+                location: enquiry.location || 'Unknown',
+                status: 'Lead',
+                source: 'Start Project Form'
+            }])
+            .select()
+            .single();
+
+        if (clientError) throw clientError;
+
+        // 2. Update Enquiry Status
+        await updateStatus('Converted');
+
+        // 3. Link (Optional: if schema has crm_client_id)
+        await window.supabase
+            .from('project_enquiries')
+            .update({ crm_client_id: newClient.id })
+            .eq('id', currentEnquiryId);
+
+        alert('✅ Converted to Client!');
+        closeModal();
+
+    } catch (err) {
+        console.error('Conversion Error:', err);
+        alert('Failed to convert: ' + (err.message || JSON.stringify(err)));
+        if (btn) {
+            btn.innerHTML = `<iconify-icon icon="solar:user-plus-bold-duotone" width="16"></iconify-icon> Convert to Client`;
+            btn.disabled = false;
+        }
     }
 }
 
@@ -175,3 +232,4 @@ function getStatusColor(status) {
 window.openModal = openModal;
 window.closeModal = closeModal;
 window.updateStatus = updateStatus;
+window.convertToClient = convertToClient;
