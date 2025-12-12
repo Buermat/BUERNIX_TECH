@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Article - BUERNIX OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- SimpleMDE Markdown Editor -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+        }
+
+        /* Editor Overrides for Dark Mode */
+        .editor-toolbar {
+            background: #18181b;
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .editor-toolbar i {
+            color: #a1a1aa;
+        }
+
+        .editor-toolbar i:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .CodeMirror {
+            background: #09090b;
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #e4e4e7;
+        }
+
+        .editor-preview {
+            background: #09090b;
+            color: #e4e4e7;
+        }
+
+        .editor-statusbar {
+            color: #71717a;
+        }
+    </style>
+    <script src="./js/supabase-config.js"></script>
+</head>
+
+<body class="bg-zinc-950 text-white flex flex-col h-screen">
+
+    <!-- Editor Header -->
+    <header class="bg-zinc-900 border-b border-white/10 px-6 py-3 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-4">
+            <a href="./blog.html" class="p-2 hover:bg-white/5 rounded-lg text-zinc-400 hover:text-white transition">
+                <iconify-icon icon="solar:arrow-left-linear" width="20"></iconify-icon>
+            </a>
+            <div>
+                <span class="text-xs font-medium text-green-400 uppercase tracking-wider hidden"
+                    id="statusIndicator">Draft</span>
+                <input type="text" id="postTitle" placeholder="Enter article title..."
+                    class="bg-transparent border-none text-xl font-bold text-white placeholder-zinc-600 focus:ring-0 w-96 p-0 mt-1">
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="savePost('draft')"
+                class="text-zinc-400 hover:text-white text-sm font-medium px-4 py-2 hover:bg-white/5 rounded-lg transition">
+                Save Draft
+            </button>
+            <button onclick="savePost('published')"
+                class="bg-white text-zinc-900 hover:bg-zinc-200 px-6 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2">
+                <iconify-icon icon="solar:plain-bold-duotone" width="16"></iconify-icon>
+                Publish
+            </button>
+            <button onclick="document.getElementById('settingsPanel').classList.toggle('translate-x-full')"
+                class="p-2 bg-zinc-800 text-white hover:bg-zinc-700 rounded-lg transition">
+                <iconify-icon icon="solar:settings-bold-duotone" width="20"></iconify-icon>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Editor Area -->
+    <div class="flex-1 overflow-hidden flex relative">
+        <div class="flex-1 overflow-y-auto bg-zinc-950">
+            <textarea id="markdownEditor"></textarea>
+        </div>
+
+        <!-- SEO & Settings Sidebar -->
+        <aside id="settingsPanel"
+            class="w-80 bg-zinc-900 border-l border-white/10 absolute right-0 top-0 bottom-0 transform translate-x-full transition-transform duration-300 z-20 shadow-2xl overflow-y-auto">
+            <div class="p-6 border-b border-white/10 flex items-center justify-between">
+                <h3 class="font-bold text-lg">Post Settings</h3>
+                <button onclick="document.getElementById('settingsPanel').classList.add('translate-x-full')"
+                    class="text-zinc-400 hover:text-white">
+                    <iconify-icon icon="solar:close-circle-bold" width="24"></iconify-icon>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- Featured Image -->
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Featured
+                        Image</label>
+                    <div class="aspect-video bg-zinc-800 rounded-lg border border-white/10 flex items-center justify-center cursor-pointer overflow-hidden relative group"
+                        onclick="document.getElementById('fileInput').click()">
+                        <img id="imagePreview" class="w-full h-full object-cover hidden" />
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-zinc-500 group-hover:text-white transition"
+                            id="uploadPrompt">
+                            <iconify-icon icon="solar:gallery-add-bold-duotone" width="24" class="mb-2"></iconify-icon>
+                            <span class="text-xs">Click to Upload</span>
+                        </div>
+                        <input type="file" id="fileInput" class="hidden" accept="image/*"
+                            onchange="handleImageUpload(event)">
+                    </div>
+                </div>
+
+                <!-- Slug -->
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">URL
+                        Slug</label>
+                    <input type="text" id="postSlug" placeholder="my-awesome-article"
+                        class="w-full bg-zinc-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/30">
+                </div>
+
+                <!-- Excerpt -->
+                <div>
+                    <label
+                        class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Excerpt</label>
+                    <textarea id="postExcerpt" rows="3" placeholder="Short summary..."
+                        class="w-full bg-zinc-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/30"></textarea>
+                </div>
+
+                <!-- SEO -->
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">SEO
+                        Title</label>
+                    <input type="text" id="seoTitle" placeholder="Browser title"
+                        class="w-full bg-zinc-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/30">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">SEO
+                        Description</label>
+                    <textarea id="seoDesc" rows="3" placeholder="Meta description for Google"
+                        class="w-full bg-zinc-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/30"></textarea>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="./js/dashboard-supabase.js"></script>
+    <script src="./js/blog-supabase.js"></script>
+</body>
+
+</html>

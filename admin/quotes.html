@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotations - BUERNIX OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- html2pdf for generating PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+        }
+    </style>
+    <script src="./js/supabase-config.js"></script>
+</head>
+
+<body class="bg-zinc-950 text-white flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-zinc-900 border-r border-white/10 flex flex-col shrink-0">
+        <div class="p-6 border-b border-white/10">
+            <div class="flex items-center gap-2">
+                <div
+                    class="h-8 w-8 rounded-lg bg-white text-zinc-950 flex items-center justify-center font-bold text-sm">
+                    B</div>
+                <span class="text-lg font-bold tracking-tight">BUERNIX OS</span>
+            </div>
+            <p class="text-xs text-zinc-500 mt-1">Enterprise Edition</p>
+        </div>
+        <nav class="flex-1 p-4 overflow-y-auto space-y-6">
+            <!-- Core -->
+            <div>
+                <h3 class="px-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Core</h3>
+                <div class="space-y-1">
+                    <a href="./dashboard.html"
+                        class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                        <iconify-icon icon="solar:widget-bold-duotone" width="20"></iconify-icon>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                </div>
+            </div>
+            <!-- CRM -->
+            <div>
+                <h3 class="px-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Growth (CRM)</h3>
+                <div class="space-y-1">
+                    <a href="./crm-clients.html"
+                        class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                        <iconify-icon icon="solar:users-group-two-rounded-bold-duotone" width="20"></iconify-icon>
+                        <span class="text-sm font-medium">Clients</span>
+                    </a>
+                    <a href="./quotes.html"
+                        class="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/10 text-white transition">
+                        <iconify-icon icon="solar:document-text-bold-duotone" width="20"></iconify-icon>
+                        <span class="text-sm font-medium">Quotations</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="bg-zinc-900/50 backdrop-blur-xl border-b border-white/10 shrink-0 z-10">
+            <div class="px-8 py-4 flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold">Quotations Engine</h1>
+                    <p class="text-sm text-zinc-400">Generate & Manage Proposals</p>
+                </div>
+                <button onclick="openQuoteModal()"
+                    class="flex items-center gap-2 px-4 py-2 bg-white text-zinc-900 rounded-xl hover:bg-zinc-200 transition font-medium text-sm">
+                    <iconify-icon icon="solar:add-circle-bold-duotone" width="20"></iconify-icon>
+                    Create Quote
+                </button>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-8 pt-4">
+            <div class="bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-white/5 border-b border-white/10 text-xs text-zinc-500 uppercase">
+                        <tr>
+                            <th class="px-6 py-4 font-semibold">Quote #</th>
+                            <th class="px-6 py-4 font-semibold">Client</th>
+                            <th class="px-6 py-4 font-semibold">Title</th>
+                            <th class="px-6 py-4 font-semibold">Amount</th>
+                            <th class="px-6 py-4 font-semibold">Status</th>
+                            <th class="px-6 py-4 font-semibold text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5 text-sm" id="quotesTableBody">
+                        <!-- JS Loads Rows Here -->
+                    </tbody>
+                </table>
+                <div id="emptyState" class="hidden py-20 text-center">
+                    <div class="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <iconify-icon icon="solar:document-text-bold-duotone" width="32"
+                            class="text-zinc-500"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white">No quotes yet</h3>
+                    <p class="text-zinc-500 mt-1">Generate your first proposal.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Quote Modal -->
+    <div id="quoteModal"
+        class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-zinc-900 border border-white/10 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-white/10 flex items-center justify-between sticky top-0 bg-zinc-900 z-10">
+                <h3 class="font-bold text-lg">New Quotation</h3>
+                <button onclick="closeQuoteModal()" class="text-zinc-400 hover:text-white">
+                    <iconify-icon icon="solar:close-circle-bold" width="24"></iconify-icon>
+                </button>
+            </div>
+
+            <form id="quoteForm" class="p-6 space-y-6">
+                <!-- Header Info -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-500 uppercase mb-2">Client</label>
+                        <select id="quoteClient"
+                            class="w-full bg-zinc-950 border border-white/10 rounded-lg px-3 py-2 text-white focus:border-white/30"></select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-500 uppercase mb-2">Currency</label>
+                        <select id="quoteCurrency"
+                            class="w-full bg-zinc-950 border border-white/10 rounded-lg px-3 py-2 text-white focus:border-white/30">
+                            <option value="AED">AED (UAE)</option>
+                            <option value="GHS">GHS (Ghana)</option>
+                            <option value="USD">USD (Global)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-500 uppercase mb-2">Project Title</label>
+                    <input type="text" id="quoteTitle" placeholder="e.g. Enterprise Web Development"
+                        class="w-full bg-zinc-950 border border-white/10 rounded-lg px-3 py-2 text-white focus:border-white/30">
+                </div>
+
+                <!-- Line Items -->
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <label class="block text-xs font-semibold text-zinc-500 uppercase">Line Items</label>
+                        <button type="button" onclick="addItemRow()"
+                            class="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                            <iconify-icon icon="solar:add-circle-bold" width="14"></iconify-icon> Add Item
+                        </button>
+                    </div>
+                    <div id="itemsContainer" class="space-y-2">
+                        <!-- Rows injected here -->
+                    </div>
+                </div>
+
+                <!-- Total -->
+                <div class="flex justify-end pt-4 border-t border-white/10">
+                    <div class="text-right">
+                        <p class="text-xs text-zinc-500 uppercase">Total Amount</p>
+                        <p class="text-2xl font-bold text-white" id="displayTotal">0.00</p>
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full py-3 bg-white text-zinc-900 rounded-xl font-bold hover:bg-zinc-200 transition">GENERATE
+                    QUOTE</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden Template for PDF Generation -->
+    <div id="pdfTemplate" class="hidden bg-white text-zinc-900 p-8 max-w-3xl mx-auto">
+        <div class="flex justify-between items-start mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-black">QUOTATION</h1>
+                <p class="text-sm text-gray-500 mt-1">#<span id="pdfQuoteNum"></span></p>
+            </div>
+            <div class="text-right">
+                <h2 class="font-bold text-lg">BUERNIX TECH</h2>
+                <p class="text-sm text-gray-500">Dubai, UAE | Accra, Ghana</p>
+                <p class="text-sm text-gray-500">contact@buernix.com</p>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-200 py-6 mb-6">
+            <h3 class="text-sm font-bold text-gray-400 uppercase mb-2">To Client:</h3>
+            <p class="font-bold text-lg" id="pdfClientName">Client Name</p>
+            <p class="text-gray-600" id="pdfProjectTitle">Project Title</p>
+        </div>
+
+        <table class="w-full mb-8">
+            <thead class="bg-gray-100 border-b border-gray-200">
+                <tr>
+                    <th class="py-2 px-4 text-left text-xs font-bold text-gray-500 uppercase">Description</th>
+                    <th class="py-2 px-4 text-right text-xs font-bold text-gray-500 uppercase">Qty</th>
+                    <th class="py-2 px-4 text-right text-xs font-bold text-gray-500 uppercase">Price</th>
+                    <th class="py-2 px-4 text-right text-xs font-bold text-gray-500 uppercase">Total</th>
+                </tr>
+            </thead>
+            <tbody id="pdfItemsBody" class="text-sm"></tbody>
+        </table>
+
+        <div class="flex justify-end">
+            <div class="w-1/3 text-right">
+                <div class="py-2 border-t border-gray-200 font-bold text-xl flex justify-between">
+                    <span>Total:</span>
+                    <span id="pdfTotal">0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center text-xs text-gray-400">
+            <p>Thank you for choosing BUERNIX TECH. This quote is valid for 14 days.</p>
+        </div>
+    </div>
+
+    <script src="./js/dashboard-supabase.js"></script>
+    <script src="./js/ops-supabase.js"></script>
+</body>
+
+</html>
