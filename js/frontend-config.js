@@ -5,22 +5,34 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // Global Client
 window.supabaseClient = null;
 
-async function initSupabase() {
+function initSupabase() {
+    // If already initialized, stop
+    if (window.supabaseClient) return;
+
     if (window.supabase) {
-        window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        console.log('✅ BUERNIX Public: Supabase Connected');
-    } else {
-        console.error('❌ Supabase SDK not loaded');
+        try {
+            window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            console.log('✅ BUERNIX Public: Supabase Connected');
+        } catch (e) {
+            console.error('❌ Supabase Init Error:', e);
+        }
     }
 }
 
-// Wait for CDN load
-window.addEventListener('load', () => {
-    // Check periodically if supabase is loaded (async script)
-    const checkSupabase = setInterval(() => {
-        if (window.supabase) {
-            clearInterval(checkSupabase);
-            initSupabase();
-        }
-    }, 100);
-});
+// 1. Try Immediately (Script is deferred, likely ready)
+initSupabase();
+
+// 2. Try on DOMContentLoaded (Classic fallback)
+document.addEventListener('DOMContentLoaded', initSupabase);
+
+// 3. Last Resort Polling (In case SDK loads very late/async)
+const checkSupabase = setInterval(() => {
+    if (window.supabaseClient) {
+        clearInterval(checkSupabase);
+    } else {
+        initSupabase();
+    }
+}, 200);
+
+// Stop polling after 10 seconds to save resources
+setTimeout(() => clearInterval(checkSupabase), 10000);
