@@ -128,10 +128,34 @@ function showToast(title, message, type = 'success') {
 }
 
 async function waitForSupabase() {
+    // 1. Check if client is already ready
+    if (window.supabaseClient) return;
+
+    // 2. Wait for SDK to load (window.supabase)
     let attempts = 0;
-    while (!window.supabaseClient && attempts < 50) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+    while (!window.supabase && attempts < 50) {
+        await new Promise(r => setTimeout(r, 100));
         attempts++;
     }
-    if (!window.supabaseClient) throw new Error('System unavailable (Supabase not initialized)');
+
+    if (!window.supabase) {
+        throw new Error('Supabase SDK failed to load from CDN. Please check your internet connection.');
+    }
+
+    // 3. Initialize Client manually if frontend-config.js failed/missed
+    try {
+        console.log('⚠️ Re-initializing Supabase manually...');
+        if (typeof SUPABASE_URL !== 'undefined' && typeof SUPABASE_ANON_KEY !== 'undefined') {
+            window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            console.log('✅ Supabase initialized manually');
+        } else {
+            // Fallback hardcoded credentials if globals are missing (Emergency Fix)
+            const URL = 'https://lpqwlbmmyblxpynmubsh.supabase.co';
+            const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxwcXdsYm1teWJseHB5bm11YnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0MDA5NjQsImV4cCI6MjA4MDk3Njk2NH0.4G05BGRrpHueQBhv8wt_AzDsfJ8PTK9TRa2yLNrsv0s';
+            window.supabaseClient = window.supabase.createClient(URL, KEY);
+            console.log('✅ Supabase initialized with fallback credentials');
+        }
+    } catch (err) {
+        throw new Error('Failed to initialize Supabase client: ' + err.message);
+    }
 }
