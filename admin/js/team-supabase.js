@@ -220,3 +220,11 @@ if (document.readyState === 'loading') {
 } else {
     initTeam();
 }
+
+// Attach to window to ensure HTML onclick works
+window.openAddModal = openAddModal;
+window.editMember = editMember;
+window.deleteMember = deleteMember;
+window.closeModal = closeModal;
+window.previewPhoto = previewPhoto;
+window.removePhoto = removePhoto;
