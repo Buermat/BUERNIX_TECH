@@ -72,9 +72,17 @@
                     <h1 class="text-2xl font-bold">Traffic Intelligence</h1>
                     <p class="text-sm text-zinc-400">Real-time Visitor Data (Internal)</p>
                 </div>
-                <div class="bg-zinc-800 rounded-lg px-3 py-1 flex items-center gap-2 border border-white/5">
-                    <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <span class="text-xs font-medium text-zinc-300">Live Tracking Active</span>
+                <div class="flex items-center gap-4">
+                    <select id="timeRange" onchange="updateDashboardByRange()"
+                        class="bg-zinc-800 border border-white/10 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-blue-500">
+                        <option value="today">Today</option>
+                        <option value="7d" selected>Last 7 Days</option>
+                        <option value="30d">Last 30 Days</option>
+                    </select>
+                    <div class="bg-zinc-800 rounded-lg px-3 py-1 flex items-center gap-2 border border-white/5">
+                        <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span class="text-xs font-medium text-zinc-300">Live</span>
+                    </div>
                 </div>
             </div>
         </header>
@@ -106,15 +114,15 @@
             <!-- Main Chart -->
             <div class="grid grid-cols-3 gap-6 mb-8">
                 <div class="col-span-2 bg-zinc-900 border border-white/10 rounded-2xl p-6">
-                    <h3 class="font-bold text-lg mb-4">Traffic Overview</h3>
+                    <h3 class="font-bold text-lg mb-4">Daily Visitors</h3>
                     <div class="h-[300px] w-full">
                         <canvas id="trafficChart"></canvas>
                     </div>
                 </div>
                 <div class="bg-zinc-900 border border-white/10 rounded-2xl p-6">
-                    <h3 class="font-bold text-lg mb-4">Traffic Sources</h3>
-                    <div class="h-[300px] w-full flex items-center justify-center">
-                        <canvas id="sourceChart"></canvas>
+                    <h3 class="font-bold text-lg mb-4">Visitors by Country</h3>
+                    <div class="h-[300px] w-full flex items-center justify-center relative">
+                        <canvas id="countryChart"></canvas>
                     </div>
                 </div>
             </div>
