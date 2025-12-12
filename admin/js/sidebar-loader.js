@@ -16,6 +16,7 @@ const SIDEBAR_CONFIG = [
         type: "dropdown",
         children: [
             { title: "Clients", path: "crm-clients.html", icon: "solar:user-bold-duotone" },
+            { title: "Enquiries", path: "enquiries.html", icon: "solar:suitcase-bold-duotone" },
             { title: "Pipeline", path: "crm-deals.html", icon: "solar:hand-money-bold-duotone" },
             { title: "Quotations", path: "quotes.html", icon: "solar:document-text-bold-duotone" },
             { title: "Bookings", path: "bookings.html", icon: "solar:calendar-bold-duotone" },

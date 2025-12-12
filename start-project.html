@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project | BUERNIX TECH</title>
+    <meta name="description"
+        content="Start your digital transformation journey with BUERNIX TECH. Fill out our project enquiry form to get started.">
+
+    <!-- Security & Fonts (Inherited) -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com https://code.iconify.design https://www.aura.build 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://hoirqrkdgbmvpwutwuwj.supabase.co data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://hoirqrkdgbmvpwutwuwj.supabase.co;">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            color: #a1a1aa;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Checkbox & Radio Customization */
+        .custom-control {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .custom-control:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .custom-control input {
+            margin-top: 0.25rem;
+            accent-color: #d4af37;
+        }
+
+        /* Section Separation */
+        .form-section {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+    </style>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/frontend-config.js" defer></script>
+    <script src="./js/start-project.js" defer></script>
+</head>
+
+<body class="antialiased selection:bg-pink-500/30">
+
+    <!-- Navigation (Simplified) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
+        <a href="index.html" class="flex items-center gap-2 text-white font-manrope font-bold text-xl tracking-tighter">
+            <img src="assets/lightface_logo.png" class="h-8 w-auto opacity-0" alt="BUERNIX">
+            <!-- Placeholder if needed, text used for now -->
+            <span>BUERNIX<span class="text-zinc-500">TECH</span></span>
+        </a>
+        <a href="index.html"
+            class="text-zinc-400 hover:text-white text-sm font-medium transition flex items-center gap-2">
+            <iconify-icon icon="solar:close-circle-bold" width="20"></iconify-icon>
+            <span class="hidden sm:inline">Cancel & Return</span>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen pt-32 pb-24 px-6">
+        <div class="max-w-3xl mx-auto">
+
+            <!-- Header -->
+            <div class="mb-16 text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tighter text-white mb-6">
+                    Start Your <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-[#f3eac2]">Project</span>
+                </h1>
+                <p class="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                    Please fill out this form as openly as possible. A team member will get back to you within
+                    <strong>24–48 hours</strong> to discuss next steps.
+                </p>
+            </div>
+
+            <!-- Form Container -->
+            <div class="bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+                <form id="enquiryForm">
+
+                    <!-- 1. Contact Information -->
+                    <div class="form-section">
+                        <h3 class="text-xl text-white font-medium mb-8 flex items-center gap-2">
+                            <span class="text-[#d4af37]">01</span> Contact Information
+                        </h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label class="form-label" for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" class="form-input" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address *</label>
+                                <input type="email" id="email" class="form-input" required
+                                    placeholder="john@company.com">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone (WhatsApp) *</label>
+                                <input type="tel" id="phone" class="form-input" required placeholder="+971 50 123 4567">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="location">Location (City/Country) *</label>
+                                <input type="text" id="location" class="form-input" required placeholder="Dubai, UAE">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Business Details -->
+                    <div class="form-section">
+                        <h3 class="text-xl text-white font-medium mb-8 flex items-center gap-2">
+                            <span class="text-[#d4af37]">02</span> Business Details
+                        </h3>
+
+                        <div class="form-group">
+                            <label class="form-label" for="businessName">Brand / Business Name *</label>
+                            <input type="text" id="businessName" class="form-input" required placeholder="Company LLC">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="businessDescription">What does your business do? *</label>
+                            <textarea id="businessDescription" class="form-input" rows="4" required
+                                placeholder="Describe your core services, target audience, and goals..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Do you have an existing brand identity? *</label>
+                            <div class="flex gap-6 mt-3">
+                                <label class="custom-control">
+                                    <input type="radio" name="brandIdentity" value="true" required>
+                                    <span class="text-zinc-300">Yes</span>
+                                </label>
+                                <label class="custom-control">
+                                    <input type="radio" name="brandIdentity" value="false" required>
+                                    <span class="text-zinc-300">No</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Services -->
+                    <div class="form-section">
+                        <h3 class="text-xl text-white font-medium mb-8 flex items-center gap-2">
+                            <span class="text-[#d4af37]">03</span> Services Needed
+                        </h3>
+                        <p class="text-sm text-zinc-500 mb-6 uppercase tracking-wider font-medium">Select all that apply
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="Website Design">
+                                <span class="text-zinc-300">Website Design</span>
+                            </label>
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="Website Maintenance">
+                                <span class="text-zinc-300">Website Maintenance & Optimization</span>
+                            </label>
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="Landing Page">
+                                <span class="text-zinc-300">Landing Page Design (Only)</span>
+                            </label>
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="Branding Package">
+                                <span class="text-zinc-300">Branding Package</span>
+                            </label>
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="Single Design Service">
+                                <span class="text-zinc-300">Single Design (Logo, Flyer, etc.)</span>
+                            </label>
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="Custom Web App">
+                                <span class="text-zinc-300">Custom Web Application</span>
+                            </label>
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="SaaS Development">
+                                <span class="text-zinc-300">SaaS Development</span>
+                            </label>
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="AI Automation">
+                                <span class="text-zinc-300">AI Automation</span>
+                            </label>
+                            <label class="custom-control">
+                                <input type="checkbox" name="services" value="ERP CRM">
+                                <span class="text-zinc-300">ERP / CRM Systems</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 4. Budget & Timeline -->
+                    <div class="form-section">
+                        <h3 class="text-xl text-white font-medium mb-8 flex items-center gap-2">
+                            <span class="text-[#d4af37]">04</span> Project Logistics
+                        </h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <!-- Budget -->
+                            <div>
+                                <label class="form-label mb-4">Budget Range (USD)</label>
+                                <div class="space-y-2">
+                                    <label class="custom-control">
+                                        <input type="radio" name="budget" value="Under $1,000" required>
+                                        <span class="text-zinc-300">Under $1,000</span>
+                                    </label>
+                                    <label class="custom-control">
+                                        <input type="radio" name="budget" value="$1,000 - $3,000">
+                                        <span class="text-zinc-300">$1,000 – $3,000</span>
+                                    </label>
+                                    <label class="custom-control">
+                                        <input type="radio" name="budget" value="$3,000 - $7,000">
+                                        <span class="text-zinc-300">$3,000 – $7,000</span>
+                                    </label>
+                                    <label class="custom-control">
+                                        <input type="radio" name="budget" value="$7,000+">
+                                        <span class="text-zinc-300">$7,000+</span>
+                                    </label>
+                                    <label class="custom-control">
+                                        <input type="radio" name="budget" value="Other">
+                                        <input type="text" id="customBudget"
+                                            class="bg-transparent border-b border-white/20 text-white text-sm focus:outline-none w-full ml-2"
+                                            placeholder="Other amount...">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Timeline -->
+                            <div>
+                                <label class="form-label mb-4">Expected Timeline</label>
+                                <div class="space-y-2">
+                                    <label class="custom-control">
+                                        <input type="radio" name="timeline" value="1-2 Weeks" required>
+                                        <span class="text-zinc-300">1 – 2 Weeks</span>
+                                    </label>
+                                    <label class="custom-control">
+                                        <input type="radio" name="timeline" value="3-4 Weeks">
+                                        <span class="text-zinc-300">3 – 4 Weeks</span>
+                                    </label>
+                                    <label class="custom-control">
+                                        <input type="radio" name="timeline" value="Flexible">
+                                        <span class="text-zinc-300">Flexible</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Preferences -->
+                    <div class="form-section">
+                        <h3 class="text-xl text-white font-medium mb-8 flex items-center gap-2">
+                            <span class="text-[#d4af37]">05</span> Preferences
+                        </h3>
+
+                        <div class="form-group">
+                            <label class="form-label">Preferred Contact Method</label>
+                            <div class="flex gap-6 mt-3">
+                                <label class="custom-control">
+                                    <input type="radio" name="contactPref" value="WhatsApp" required>
+                                    <span class="text-zinc-300">WhatsApp</span>
+                                </label>
+                                <label class="custom-control">
+                                    <input type="radio" name="contactPref" value="Email">
+                                    <span class="text-zinc-300">Email</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="additionalNotes">Any additional information?</label>
+                            <textarea id="additionalNotes" class="form-input" rows="4"
+                                placeholder="Links to references, specific features, design inspiration, etc."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="pt-4">
+                        <button type="submit" id="submitBtn"
+                            class="w-full h-16 bg-gradient-to-r from-[#4b5320] to-[#d4af37] hover:from-[#3f461b] hover:to-[#c5a028] text-white text-lg font-bold rounded-xl transition-all duration-300 shadow-lg shadow-[#d4af37]/20 flex items-center justify-center gap-3">
+                            <span>Submit Project Enquiry</span>
+                            <iconify-icon icon="solar:arrow-right-bold" width="24"></iconify-icon>
+                        </button>
+                        <p class="text-center text-zinc-500 text-sm mt-6">
+                            Your details are secure. We respect your privacy.
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast"
+        class="fixed top-24 right-6 p-4 rounded-xl bg-zinc-900 border border-white/10 shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex items-center gap-3">
+        <div id="toastIcon"
+            class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center text-green-500">
+            <iconify-icon icon="solar:check-circle-bold" width="20"></iconify-icon>
+        </div>
+        <div>
+            <h4 id="toastTitle" class="text-sm font-medium text-white">Success</h4>
+            <p id="toastMessage" class="text-xs text-zinc-400">Action completed successfully.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
