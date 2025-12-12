@@ -212,3 +212,10 @@ document.getElementById('serviceForm').addEventListener('submit', async function
 
 // Initialize on page load
 initServices();
+
+// Attach to window to ensure HTML onclick works
+window.openAddModal = openAddModal;
+window.editService = editService;
+window.toggleVisibility = toggleVisibility;
+window.deleteService = deleteService;
+window.closeModal = closeModal;
