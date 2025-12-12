@@ -1,38 +1,20 @@
-// BUERNIX Frontend Supabase Configuration
+// BUERNIX Frontend Supabase Configuration (ES Module)
+// Importing directly to avoid script tag loading issues
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
 const SUPABASE_URL = 'https://lpqwlbmmyblxpynmubsh.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxwcXdsYm1teWJseHB5bm11YnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0MDA5NjQsImV4cCI6MjA4MDk3Njk2NH0.4G05BGRrpHueQBhv8wt_AzDsfJ8PTK9TRa2yLNrsv0s';
 
 // Global Client
-window.supabaseClient = null;
+let client = null;
 
-function initSupabase() {
-    // If already initialized, stop
-    if (window.supabaseClient) return;
-
-    if (window.supabase) {
-        try {
-            window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            console.log('✅ BUERNIX Public: Supabase Connected');
-        } catch (e) {
-            console.error('❌ Supabase Init Error:', e);
-        }
-    }
+try {
+    client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    console.log('✅ BUERNIX Public: Supabase Connected (ESM)');
+} catch (e) {
+    console.error('❌ Supabase Init Error:', e);
 }
 
-// 1. Try Immediately (Script is deferred, likely ready)
-initSupabase();
-
-// 2. Try on DOMContentLoaded (Classic fallback)
-document.addEventListener('DOMContentLoaded', initSupabase);
-
-// 3. Last Resort Polling (In case SDK loads very late/async)
-const checkSupabase = setInterval(() => {
-    if (window.supabaseClient) {
-        clearInterval(checkSupabase);
-    } else {
-        initSupabase();
-    }
-}, 200);
-
-// Stop polling after 10 seconds to save resources
-setTimeout(() => clearInterval(checkSupabase), 10000);
+// Expose to window for other scripts
+window.supabaseClient = client;
+window.supabase = { createClient }; // Fallback for legacy checks
