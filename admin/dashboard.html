@@ -41,37 +41,100 @@
             </div>
 
             <!-- Navigation -->
-            <nav class="flex-1 p-4 space-y-1">
-                <a href="./dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10 text-white">
-                    <iconify-icon icon="solar:widget-bold-duotone" width="20"></iconify-icon>
-                    <span class="text-sm font-medium">Dashboard</span>
-                </a>
-                <a href="./projects.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
-                    <iconify-icon icon="solar:folder-bold-duotone" width="20"></iconify-icon>
-                    <span class="text-sm font-medium">Projects</span>
-                </a>
-                <a href="./services.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
-                    <iconify-icon icon="solar:settings-bold-duotone" width="20"></iconify-icon>
-                    <span class="text-sm font-medium">Services</span>
-                </a>
-                <a href="./team.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
-                    <iconify-icon icon="solar:users-group-rounded-bold-duotone" width="20"></iconify-icon>
-                    <span class="text-sm font-medium">Team</span>
-                </a>
-                <a href="./messages.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
-                    <iconify-icon icon="solar:letter-bold-duotone" width="20"></iconify-icon>
-                    <span class="text-sm font-medium">Messages</span>
-                    <span class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span>
-                </a>
-                <a href="./settings.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
-                    <iconify-icon icon="solar:settings-minimalistic-bold-duotone" width="20"></iconify-icon>
-                    <span class="text-sm font-medium">Settings</span>
-                </a>
+            <nav class="flex-1 p-4 overflow-y-auto space-y-6">
+                <!-- Core Operations -->
+                <div>
+                    <h3 class="px-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Core</h3>
+                    <div class="space-y-1">
+                        <a href="./dashboard.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/10 text-white">
+                            <iconify-icon icon="solar:widget-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Command Center</span>
+                        </a>
+                        <a href="./messages.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:inbox-line-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Inbox</span>
+                        </a>
+                        <a href="./bookings.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:calendar-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Calendar</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CMS Engine -->
+                <div>
+                    <h3 class="px-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Content Engine
+                    </h3>
+                    <div class="space-y-1">
+                        <a href="./blog.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:pen-new-square-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Blog & News</span>
+                        </a>
+                        <a href="./projects.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:folder-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Projects</span>
+                        </a>
+                        <a href="./services.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:layers-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Services</span>
+                        </a>
+                        <a href="./media.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:gallery-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Media Library</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CRM System -->
+                <div>
+                    <h3 class="px-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Growth (CRM)</h3>
+                    <div class="space-y-1">
+                        <a href="./crm-clients.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:users-group-two-rounded-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Clients</span>
+                        </a>
+                        <a href="./crm-deals.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:hand-money-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Pipeline</span>
+                        </a>
+                        <a href="./quotes.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:document-text-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Quotations</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- System -->
+                <div>
+                    <h3 class="px-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">System</h3>
+                    <div class="space-y-1">
+                        <a href="./analytics.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:chart-2-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Analytics</span>
+                        </a>
+                        <a href="./team.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:shield-user-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Team & Roles</span>
+                        </a>
+                        <a href="./settings.html"
+                            class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                            <iconify-icon icon="solar:settings-bold-duotone" width="20"></iconify-icon>
+                            <span class="text-sm font-medium">Settings</span>
+                        </a>
+                    </div>
+                </div>
             </nav>
 
             <!-- User Menu -->
