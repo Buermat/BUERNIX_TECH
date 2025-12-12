@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - BUERNIX TECH Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+        }
+    </style>
+    <script src="./js/supabase-config.js"></script>
+</head>
+
+<body class="bg-zinc-950 text-white">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar (same as others) -->
+        <aside class="w-64 bg-zinc-900 border-r border-white/10 flex flex-col">
+            <div class="p-6 border-b border-white/10">
+                <div class="flex items-center gap-2">
+                    <div
+                        class="h-8 w-8 rounded-lg bg-white text-zinc-950 flex items-center justify-center font-bold text-sm">
+                        B</div>
+                    <span class="text-lg font-bold tracking-tight">BUERNIX TECH</span>
+                </div>
+                <p class="text-xs text-zinc-500 mt-1">Admin Panel</p>
+            </div>
+            <nav class="flex-1 p-4 space-y-1">
+                <a href="./dashboard.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                    <iconify-icon icon="solar:widget-bold-duotone" width="20"></iconify-icon>
+                    <span class="text-sm font-medium">Dashboard</span>
+                </a>
+                <a href="./projects.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                    <iconify-icon icon="solar:folder-bold-duotone" width="20"></iconify-icon>
+                    <span class="text-sm font-medium">Projects</span>
+                </a>
+                <a href="./services.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                    <iconify-icon icon="solar:settings-bold-duotone" width="20"></iconify-icon>
+                    <span class="text-sm font-medium">Services</span>
+                </a>
+                <a href="./team.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                    <iconify-icon icon="solar:users-group-rounded-bold-duotone" width="20"></iconify-icon>
+                    <span class="text-sm font-medium">Team</span>
+                </a>
+                <a href="./messages.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10 text-white">
+                    <iconify-icon icon="solar:letter-bold-duotone" width="20"></iconify-icon>
+                    <span class="text-sm font-medium">Messages</span>
+                </a>
+                <a href="./settings.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-zinc-400 hover:text-white transition">
+                    <iconify-icon icon="solar:settings-minimalistic-bold-duotone" width="20"></iconify-icon>
+                    <span class="text-sm font-medium">Settings</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-white/10">
+                <button onclick="logout()"
+                    class="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 transition text-sm">
+                    <iconify-icon icon="solar:logout-bold-duotone" width="16"></iconify-icon>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <header class="bg-zinc-900/50 backdrop-blur-xl border-b border-white/10 sticky top-0 z-10">
+                <div class="px-8 py-4">
+                    <h1 class="text-2xl font-bold">Messages</h1>
+                    <p class="text-sm text-zinc-400">Contact form submissions</p>
+                </div>
+            </header>
+
+            <div class="p-8">
+                <div id="messagesList" class="space-y-4">
+                    <!-- Messages will be loaded here -->
+                </div>
+
+                <div id="emptyState" class="hidden text-center py-20">
+                    <iconify-icon icon="solar:letter-bold-duotone" width="60"
+                        class="text-zinc-600 mx-auto mb-4"></iconify-icon>
+                    <h3 class="text-xl font-semibold mb-2">No messages yet</h3>
+                    <p class="text-zinc-400">Contact form submissions will appear here</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./js/dashboard-supabase.js"></script>
+    <script src="./js/messages-supabase.js"></script>
+</body>
+
+</html>
