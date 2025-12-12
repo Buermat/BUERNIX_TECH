@@ -152,12 +152,71 @@
                         placeholder="CEO & Founder">
                 </div>
 
-                <!-- Bio -->
+                <!-- Permissions Matrix -->
                 <div>
-                    <label class="block text-sm font-medium mb-2">Bio</label>
-                    <textarea id="memberBio" rows="3"
-                        class="w-full px-4 py-3 bg-zinc-800/50 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/20"
-                        placeholder="Brief bio..."></textarea>
+                    <label class="block text-sm font-medium mb-3">Access Permissions & Roles</label>
+                    <div class="bg-zinc-800/50 border border-white/10 rounded-xl overflow-hidden">
+                        <!-- CMS Engine -->
+                        <div class="p-3 border-b border-white/5 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <iconify-icon icon="solar:pen-new-square-bold-duotone"
+                                    class="text-blue-400"></iconify-icon>
+                                <span class="text-sm font-medium">Content Engine</span>
+                            </div>
+                            <select id="perm_content"
+                                class="bg-zinc-900 border border-white/10 rounded-lg px-2 py-1 text-xs text-white focus:outline-none">
+                                <option value="none">No Access</option>
+                                <option value="read">View Only</option>
+                                <option value="write">Editor (Write)</option>
+                                <option value="admin">Admin (Full)</option>
+                            </select>
+                        </div>
+
+                        <!-- CRM System -->
+                        <div class="p-3 border-b border-white/5 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <iconify-icon icon="solar:users-group-two-rounded-bold-duotone"
+                                    class="text-green-400"></iconify-icon>
+                                <span class="text-sm font-medium">Growth (CRM)</span>
+                            </div>
+                            <select id="perm_crm"
+                                class="bg-zinc-900 border border-white/10 rounded-lg px-2 py-1 text-xs text-white focus:outline-none">
+                                <option value="none">No Access</option>
+                                <option value="read">View Only</option>
+                                <option value="write">Manager (Edit)</option>
+                                <option value="admin">Admin (Full)</option>
+                            </select>
+                        </div>
+
+                        <!-- Operations -->
+                        <div class="p-3 border-b border-white/5 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <iconify-icon icon="solar:document-text-bold-duotone"
+                                    class="text-yellow-400"></iconify-icon>
+                                <span class="text-sm font-medium">Operations (Quotes)</span>
+                            </div>
+                            <select id="perm_ops"
+                                class="bg-zinc-900 border border-white/10 rounded-lg px-2 py-1 text-xs text-white focus:outline-none">
+                                <option value="none">No Access</option>
+                                <option value="read">View Only</option>
+                                <option value="write">Creator</option>
+                            </select>
+                        </div>
+
+                        <!-- System & Analytics -->
+                        <div class="p-3 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <iconify-icon icon="solar:settings-bold-duotone" class="text-purple-400"></iconify-icon>
+                                <span class="text-sm font-medium">System & Analytics</span>
+                            </div>
+                            <select id="perm_system"
+                                class="bg-zinc-900 border border-white/10 rounded-lg px-2 py-1 text-xs text-white focus:outline-none">
+                                <option value="none">No Access</option>
+                                <option value="read">View Only</option>
+                                <option value="admin">Admin (Full)</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Photo Upload -->

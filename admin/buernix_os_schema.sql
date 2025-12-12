@@ -152,3 +152,20 @@ CREATE TRIGGER update_crm_clients_modtime
     BEFORE UPDATE ON public.crm_clients
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
+
+-- 6️⃣ TEAM & RBAC (The Staff Directory)
+CREATE TABLE IF NOT EXISTS public.team_members (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  role TEXT,
+  email TEXT,
+  bio TEXT,
+  photo_url TEXT,
+  permissions JSONB DEFAULT '{}', -- Format: { "cms": "write", "crm": "read", "analytics": "none" }
+  order_index INTEGER DEFAULT 0,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- RLS for Team
+ALTER TABLE public.team_members ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Staff Full Access Team" ON public.team_members FOR ALL USING (auth.role() = 'authenticated');
